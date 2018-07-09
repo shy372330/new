@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class ShiroRealm extends AuthorizingRealm {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.  getLogger(this.getClass());
 
     @Autowired
     private EmployeeMapper employeeMapper;
