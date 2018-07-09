@@ -1,0 +1,11 @@
+debug: false
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://39.106.168.77:3306/bksrDB?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: dba_user
+    password: Test@163.com
+   #url: jdbc:mysql://localhost:3306/permission?useUnicode=true&characterEncoding=utf8&useSSL=false
+    #username: root
+   # password: shy159
