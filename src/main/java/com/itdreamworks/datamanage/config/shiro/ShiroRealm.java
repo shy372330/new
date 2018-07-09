@@ -23,7 +23,7 @@ public class ShiroRealm extends AuthorizingRealm {
     private Logger logger = LoggerFactory.  getLogger(this.getClass());
 
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private EmployeeMapper   employeeMapper;
 
     @Autowired
     private ResourceMapper resourceMapper;
