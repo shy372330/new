@@ -18,7 +18,7 @@ public class BoilerController {
     @Autowired
     private BoilerMapper boilerMapper ;
     @Autowired
-    private BoilerService  boilerService;
+    private BoilerService boilerService;
     @RequestMapping("/listByPage")
     public List<Boiler_Device_View> getListByPage(String customerId,Integer pageNum,Integer pageSize){
         if (pageNum==0) return Collections.emptyList();
