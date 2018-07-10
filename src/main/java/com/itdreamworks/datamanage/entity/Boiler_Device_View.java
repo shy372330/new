@@ -4,6 +4,8 @@ public class Boiler_Device_View {
     private Integer id,boilerType,boilerTon,boilerMedium,boilerFuel,status;
     private  String customerId,boilerNo,deviceNo,typeName,tonName,mediumName,fuelName,lat,lng;
 
+
+
     public Integer getId() {
         return id;
     }

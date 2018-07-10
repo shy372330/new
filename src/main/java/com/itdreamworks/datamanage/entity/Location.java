@@ -2,7 +2,6 @@ package com.itdreamworks.datamanage.entity;
 
 public class Location {
     private Integer id;
-    private String areaname;
     private Double lng;
     private Double lat;
     private String deviceNo;
@@ -15,13 +14,6 @@ public class Location {
         this.id = id;
     }
 
-    public String getAreaname() {
-        return areaname;
-    }
-
-    public void setAreaname(String areaname) {
-        this.areaname = areaname;
-    }
 
     public Double getLng() {
         return lng;
