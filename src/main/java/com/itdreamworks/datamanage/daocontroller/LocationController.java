@@ -1,6 +1,8 @@
 package com.itdreamworks.datamanage.daocontroller;
 
 import com.itdreamworks.datamanage.entity.Location;
+import com.itdreamworks.datamanage.mapper.LocationMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,19 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/location")
 public class LocationController {
-    @RequestMapping("/create")
-    public boolean create(Location location){
+    @Autowired
+    private LocationMapper mapper;
 
-        return false;
-    }
-
-    @RequestMapping("/modify")
-    public boolean modify(Location location){
-        return false;
-    }
+    //根据客户的编号获取所有的区域信息
     @RequestMapping("/list")
-    public List<Location> getLocation(@RequestParam("account") String account){
-
-        return null;
+    public List<Location> getLocation(@RequestParam("customerId") String customerId){
+        return mapper.findLocationList(customerId);
     }
 }
