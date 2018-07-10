@@ -1,10 +1,7 @@
 package com.itdreamworks.datamanage.mapper;
 
 import com.itdreamworks.datamanage.entity.Boiler_Device_View;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,4 +17,9 @@ public interface BoilerMapper {
     void create(Boiler_Device_View boiler_device_view);
     @Insert("insert into Location(deviceNo,lng,lat) values(#{deviceNo},#{lng},#{lat})")
     void insertLocation(Boiler_Device_View boiler_device_view);
+    @Update("update Boiler set customerId=#{customerId},BoilerNo=#{boilerNo},DeviceNo=#{deviceNo},BolierType=#{boilerType},\n" +
+            "BoilerTon=#{boilerTon},BoilerMedium=#{boilerMedium},BoilerFuel=#{boilerFuel},Status=#{status})  ")
+    void modify(Boiler_Device_View boiler_device_view);
+    @Update("update Location set  deviceNo=#{deviceNo},lng=#{lng},lat=#{lat}")
+    void modifyLocation(Boiler_Device_View boiler_device_view);
 }

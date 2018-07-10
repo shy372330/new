@@ -33,4 +33,20 @@ public class BoilerService {
         }
 
     }
+    @Transactional(rollbackFor = Exception.class)
+    public boolean modify(Boiler_Device_View boiler_device_view) {
+        try {
+            mapper.modify(boiler_device_view);
+            mapper.modifyLocation(boiler_device_view);
+            return true;
+        }catch (DuplicateKeyException e) {
+            e.printStackTrace();
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return false;
+        }catch (Exception e ){
+            e.printStackTrace();
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            return false;
+        }
+    }
 }
