@@ -1,8 +1,22 @@
 package com.itdreamworks.datamanage.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class Boiler_Device_View {
     private Integer id,boilerType,boilerTon,boilerMedium,boilerFuel,status;
     private  String customerId,boilerNo,deviceNo,typeName,tonName,mediumName,fuelName,lat,lng;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date saleTime;
+
+    public Date getSaleTime() {
+        return saleTime;
+    }
+
+    public void setSaleTime(Date saleTime) {
+        this.saleTime = saleTime;
+    }
 
     public Integer getId() {
         return id;
