@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping("/boiler")
 public class BoilerController {
     @Autowired
-    private BoilerMapper boilerMapper;
+    private BoilerMapper boilerMapper ;
     @Autowired
     private BoilerService boilerService;
     @RequestMapping("/listByPage")
