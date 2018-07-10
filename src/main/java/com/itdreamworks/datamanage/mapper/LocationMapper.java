@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public interface LocationMapper {
 
-    @Select("select n.* from Location n LEFT JOIN Boiler r on n.DeviceNo =r.DeviceNo\n" +
+    @Select("select * from Location n LEFT JOIN Boiler r on n.DeviceNo =r.DeviceNo\n" +
             "where r.customerId=#{customerId}")
     @ResultType(Location.class)
     List<Location> findLocationList(@Param("customerId") String customerId);

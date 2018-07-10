@@ -25,6 +25,11 @@ public class BoilerController {
         Integer from = (pageNum-1)*pageSize;
         return boilerMapper.getBoilerList(customerId,from,pageSize);
     }
+    @RequestMapping("/list")
+    public List<Boiler_Device_View> getList(String customerId ){
+
+        return boilerMapper.getAll(customerId);
+    }
     @PostMapping("/add")
     public boolean create(@RequestBody Boiler_Device_View boiler_device_view){
         return boilerService.create(boiler_device_view);

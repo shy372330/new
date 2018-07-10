@@ -22,4 +22,7 @@ public interface BoilerMapper {
     void modify(Boiler_Device_View boiler_device_view);
     @Update("update Location set  deviceNo=#{deviceNo},lng=#{lng},lat=#{lat}")
     void modifyLocation(Boiler_Device_View boiler_device_view);
+    @Select("select * from Boiler_Device_View where customerId = #{customerId} ")
+    @ResultType(Boiler_Device_View.class)
+    List<Boiler_Device_View> getAll(@Param("customerId") String customerId);
 }
