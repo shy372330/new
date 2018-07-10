@@ -29,7 +29,7 @@ import java.util.List;
 @RequestMapping(value = "/account")
 public class LoginController {
     @Autowired
-   private EmployeeMapper mapper;
+    private EmployeeMapper mapper;
     @PostMapping(value = "/signin", produces ="application/json;charset=utf-8")
     public String signIn(@RequestParam(name = "loginid") String loginId, @RequestParam(name = "password") String password) {
         Employee user = mapper.findOneByLoginId(loginId);
@@ -37,7 +37,7 @@ public class LoginController {
             return "{\"code\":0,\"msg\":\"用户名或密码错误！\"}";
         if (user.getPassword().equals(password)) {
             if (Employee.STATUS_ENABLE == user.getStatus()) {
-                return String.format("{\"code\":1,\"token\":\"\",\"user\":{\"name\":\"%s\"}}", user.getRealName());
+                return String.format("{\"code\":1,\"token\":\"\",\"user\":{\"orgId\":\"%s\"}}", user.getOrgId());
             } else {
                 return "{\"code\":0,\"msg\":\"您的用户账号已经被禁用，请联系系统管理人员！\"}";
             }

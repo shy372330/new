@@ -27,7 +27,7 @@ public class EmployeeController {
         employee.setPassword(password);
         employee.setRealName(realName);
         employee.setMobile(mobile);
-        employee.setOrgId(0);
+        //employee.setOrgId(0);
         employee.setOrgType(10);
         employee.setEmail(mobile);
         employee.setStatus(0);

@@ -9,7 +9,8 @@ public class Employee implements Serializable {
     public static final int STATUS_ENABLE=1;
     public static final int STATUS_DISABLE=0;
 
-    private int id,orgType,orgId,status;
+    private int id,orgType,status;
+    private String orgId;
     private String password,mobile,email,weiXin,qQ,realName,mark;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date lastLoginDatetime;
@@ -38,11 +39,11 @@ public class Employee implements Serializable {
         this.orgType = orgType;
     }
 
-    public int getOrgId() {
+    public String getOrgId() {
         return orgId;
     }
 
-    public void setOrgId(int orgId) {
+    public void setOrgId(String orgId) {
         this.orgId = orgId;
     }
 
