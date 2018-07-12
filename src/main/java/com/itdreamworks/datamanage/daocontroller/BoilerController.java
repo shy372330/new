@@ -36,6 +36,7 @@ public class BoilerController {
     }
     @PostMapping("/modify")
     public boolean modify(@RequestBody Boiler_Device_View boiler_device_view){
+
         return boilerService.modify(boiler_device_view);
     }
 }
