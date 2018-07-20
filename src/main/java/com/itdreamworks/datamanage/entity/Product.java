@@ -3,6 +3,7 @@ package com.itdreamworks.datamanage.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Product {
 
@@ -16,9 +17,14 @@ public class Product {
     private Integer isSell;         //是否售出
     private String customerId;  //客户编号
     private Date saleDate;      //售出日期
-    private String saleAddress; //售出地址
     private String longitude;   //经度
     private String latitude;    //纬度
+    private String province;     //省
+    private String city;        //市
+    private String district;    //区
+    private String street;      //街道
+    private Timestamp createDateTime; //创建时间
+    private Timestamp editDateTime;   //编辑时间
 
     public Integer getId() {
         return id;
@@ -101,13 +107,6 @@ public class Product {
         this.saleDate = saleDate;
     }
 
-    public String getSaleAddress() {
-        return saleAddress;
-    }
-
-    public void setSaleAddress(String saleAddress) {
-        this.saleAddress = saleAddress;
-    }
 
     public String getLongitude() {
         return longitude;
@@ -123,5 +122,55 @@ public class Product {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Timestamp getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public void setCreateDateTime(Timestamp createDateTime) {
+        this.createDateTime = createDateTime;
+    }
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    public Timestamp getEditDateTime() {
+        return editDateTime;
+    }
+
+    public void setEditDateTime(Timestamp editDateTime) {
+        this.editDateTime = editDateTime;
     }
 }

@@ -1,8 +1,8 @@
 package com.itdreamworks.datamanage.entity;
 
 public class Resource {
-    private Integer resId,pId;
-    private String resName,url,permission;
+    private Integer resId,pId,hidden;
+    private String resName,url,pageUrl,permission;
 
     public Integer getResId() {
         return resId;
@@ -42,5 +42,21 @@ public class Resource {
 
     public void setPermission(String permission) {
         this.permission = permission;
+    }
+
+    public Integer getHidden() {
+        return hidden;
+    }
+
+    public void setHidden(Integer hidden) {
+        this.hidden = hidden;
+    }
+
+    public String getPageUrl() {
+        return pageUrl;
+    }
+
+    public void setPageUrl(String pageUrl) {
+        this.pageUrl = pageUrl;
     }
 }
