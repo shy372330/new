@@ -1,16 +1,18 @@
 package com.itdreamworks.datamanage.daocontroller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.itdreamworks.datamanage.entity.Resource;
 import com.itdreamworks.datamanage.entity.Resource;
 import com.itdreamworks.datamanage.mapper.ResourceMapper;
+import com.itdreamworks.datamanage.util.Result;
+import com.itdreamworks.datamanage.util.ResultGenerator;
 import com.itdreamworks.datamanage.util.constants.Constants;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,30 +20,51 @@ import java.util.List;
 @RequestMapping(value = "/resource")
 public class ResourceController {
     @Autowired
-    private ResourceMapper mapper;
+    private ResourceMapper resourceMapper;
 
-    @GetMapping(value = "/list")
-    public List<Resource> getAllResourceByAccount(String account) {
-        List<Resource> userPermission =mapper.findAll(account);
-        //获取权限名称
-        return userPermission;
-    }
-
-    @PostMapping(value = "/create")
-    public boolean create(Resource resource) {
-        return mapper.addResource(resource) > 0;
-    }
-    @PostMapping(value = "/modify")
-    public boolean modifyRole(Resource resource) {
-        return mapper.modifyResource(resource) > 0;
+    /**
+     * 获得菜单
+     * @param account
+     * @return
+     */
+    @GetMapping(value = "/resourcebyaccount")
+    public Result getResourceByAccount(String account) {
+        return ResultGenerator.genSuccessResult(resourceMapper.getResourceByAccount(account));
     }
 
-    @PostMapping(value = "/delete")
-    public boolean deleteRole(Integer resId){
-        return mapper.delResource(resId)>0;
+    /**
+     * 查询资源列表
+     * @param resource
+     * @return
+     */
+    @GetMapping(value = "/resourcelistbycondition")
+    public Result getResourceListByCondition(Resource resource) {
+        return ResultGenerator.genSuccessResult(resourceMapper.getResourceListByCondition(resource));
     }
-    @GetMapping(value = "getAllByRoleIds")
-    public  List<Resource> getAllByRoleIds(List<Integer> roleIds){
-        return mapper.getAllByRoleIds(roleIds);
+
+    /**
+     * 编辑资源
+     * @param resource
+     * @return
+     */
+    @PostMapping("/editresource")
+    public Result editResource(@RequestBody Resource resource){
+        if(resource.getResId()!=null){
+            resourceMapper.updateResource(resource);
+        }else{
+            resourceMapper.insertResource(resource);
+        }
+        return ResultGenerator.genSuccessResult();
+    }
+
+    /**
+     * 删除资源
+     * @param resId
+     * @return
+     */
+    @PostMapping(value = "/deleteresourcebyid")
+    public Result deleteResourceById(@RequestParam int resId){
+        resourceMapper.deleteResourceById(resId);
+        return ResultGenerator.genSuccessResult();
     }
 }

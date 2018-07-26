@@ -1,7 +1,7 @@
 package com.itdreamworks.datamanage.entity;
 
 public class Resource {
-    private Integer resId,pId,hidden;
+    private Integer resId,pId,hidden,sort;
     private String resName,url,pageUrl,permission;
 
     public Integer getResId() {
@@ -58,5 +58,13 @@ public class Resource {
 
     public void setPageUrl(String pageUrl) {
         this.pageUrl = pageUrl;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 }

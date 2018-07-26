@@ -55,5 +55,8 @@ public class ResultGenerator {
     public static <T> Result<T> genFailResult(int code,String msg,T data) {
         return new Result().setResultCode(code,msg).setData(data);
     }
+    public static <T> Result<T> genFailResult(int code,String msg) {
+        return new Result().setResultCode(code,msg);
+    }
 
 }

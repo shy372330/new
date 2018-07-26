@@ -5,9 +5,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.sql.Date;
 
 public class User {
+    public static final int STATUS_ENABLE=1;
+    public static final int STATUS_DISABLE=0;
     private Integer id, orgType,status;//id-组织类型-状态
     private String orgId;         //组织Id
-        private String password,mobile,email,weiXin,qQ,realName,mark;//密码-电话-邮箱-微信-qq-真实姓名-标记
+        private String password,mobile,email,weiXin,qQ,realName,mark,organizationName,organizationNo,roleId,roleName;
     private Date lastLoginDatetime;
 
     public Integer getId() {
@@ -104,5 +106,37 @@ public class User {
 
     public void setLastLoginDatetime(Date lastLoginDatetime) {
         this.lastLoginDatetime = lastLoginDatetime;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    public String getOrganizationNo() {
+        return organizationNo;
+    }
+
+    public void setOrganizationNo(String organizationNo) {
+        this.organizationNo = organizationNo;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

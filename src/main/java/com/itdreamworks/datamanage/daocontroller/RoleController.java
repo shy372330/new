@@ -1,45 +1,67 @@
 package com.itdreamworks.datamanage.daocontroller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.itdreamworks.datamanage.entity.Product;
 import com.itdreamworks.datamanage.entity.Role;
 import com.itdreamworks.datamanage.mapper.RoleMapper;
+import com.itdreamworks.datamanage.util.Result;
+import com.itdreamworks.datamanage.util.ResultGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/role")
-
 public class RoleController {
+
     @Autowired
-    private RoleMapper mapper;
-    @GetMapping(value = "/list")
-    public List<Role> getAllRole() {
-        return mapper.findAll();
+    private RoleMapper roleMapper;
+
+    /**
+     * 查询角色列表
+     * @param role
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @GetMapping(value = "/rolelistbycondition")
+    public Result getRoleListByCondition(Role role, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Role> list =roleMapper.getRoleListByCondition(role);
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
     }
 
-    @PostMapping(value = "/create")
-    public boolean create(Role role) {
-        return mapper.addRole(role) > 0;
+    /**
+     * 编辑角色
+     * @param role
+     * @return
+     */
+    @PostMapping("/editrole")
+    public Result editRole(@RequestBody Role role){
+        if(role.getRoleId()!=null){
+            roleMapper.updateRole(role);
+        }else{
+            roleMapper.insertRole(role);
+        }
+        return ResultGenerator.genSuccessResult();
     }
 
-
-    @PostMapping(value = "/modify")
-    public boolean modifyRole(Role role) {
-        return mapper.modifyRole(role) > 0;
-    }
-
-    @PostMapping(value = "/delete")
-    public boolean deleteRole(Integer roleId){
-        return mapper.delRole(roleId)>0;
+    /**
+     * 删除角色
+     * @param roleId
+     * @return
+     */
+    @PostMapping(value = "/deleterolebyid")
+    public Result deleteRoleById(@RequestParam int roleId){
+        roleMapper.deleteRoleById(roleId);
+        return ResultGenerator.genSuccessResult();
     }
 
     @GetMapping(value = "/getAllByUserId")
     public List<Role> findAllByUserId(Integer useId){
-        return mapper.findAllByUserId(useId);
+        return roleMapper.findAllByUserId(useId);
     }
-
 }

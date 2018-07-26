@@ -8,9 +8,12 @@ import java.sql.Timestamp;
 public class Product {
 
     private Integer id;
-    private String deviceNo;    //设备编号
-    private String boilerNo;    //锅炉编号
-    private Integer modelNumber;    //型号
+    private String organizationType;//组织类型
+    private String organizationNo; //组织编号
+    private String deviceNo;        //设备编号
+    private Integer deviceType;      //设备类型
+    private String boilerNo;        //锅炉编号
+    private Integer boilerModelNumber;//锅炉型号
     private Integer tonnage;        //吨位
     private Integer medium;         //介质
     private Integer fuel;           //燃料
@@ -25,6 +28,9 @@ public class Product {
     private String street;      //街道
     private Timestamp createDateTime; //创建时间
     private Timestamp editDateTime;   //编辑时间
+    private String manageUserName;    //管理者的用户名称
+    private Integer manageUserId;     //管理者的用户Id
+    private Integer roleId;           //角色Id
 
     public Integer getId() {
         return id;
@@ -32,6 +38,22 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getOrganizationType() {
+        return organizationType;
+    }
+
+    public void setOrganizationType(String organizationType) {
+        this.organizationType = organizationType;
+    }
+
+    public String getOrganizationNo() {
+        return organizationNo;
+    }
+
+    public void setOrganizationNo(String organizationNo) {
+        this.organizationNo = organizationNo;
     }
 
     public String getDeviceNo() {
@@ -48,14 +70,6 @@ public class Product {
 
     public void setBoilerNo(String boilerNo) {
         this.boilerNo = boilerNo;
-    }
-
-    public Integer getModelNumber() {
-        return modelNumber;
-    }
-
-    public void setModelNumber(Integer modelNumber) {
-        this.modelNumber = modelNumber;
     }
 
     public Integer getTonnage() {
@@ -172,5 +186,45 @@ public class Product {
 
     public void setEditDateTime(Timestamp editDateTime) {
         this.editDateTime = editDateTime;
+    }
+
+    public Integer getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(Integer deviceType) {
+        this.deviceType = deviceType;
+    }
+
+    public Integer getBoilerModelNumber() {
+        return boilerModelNumber;
+    }
+
+    public void setBoilerModelNumber(Integer boilerModelNumber) {
+        this.boilerModelNumber = boilerModelNumber;
+    }
+
+    public String getManageUserName() {
+        return manageUserName;
+    }
+
+    public void setManageUserName(String manageUserName) {
+        this.manageUserName = manageUserName;
+    }
+
+    public Integer getManageUserId() {
+        return manageUserId;
+    }
+
+    public void setManageUserId(Integer manageUserId) {
+        this.manageUserId = manageUserId;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
     }
 }

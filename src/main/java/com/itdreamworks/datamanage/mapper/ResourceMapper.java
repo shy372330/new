@@ -8,25 +8,34 @@ import java.util.List;
 
 @Component
 public interface ResourceMapper {
-    @Select("select * from Resource re \n" +
-            "LEFT JOIN RoleResource rr on rr.ResId = re.ResId\n" +
-            "LEFT JOIN UserRole ur on rr.RoleId = ur.RoleId\n" +
-            "LEFT JOIN Employee ee on ee.Id = ur.UserId \n" +
+
+    @Select("select * from Resource re " +
+            "LEFT JOIN RoleResource rr on rr.ResId = re.ResId " +
+            "LEFT JOIN UserRole ur on rr.RoleId = ur.RoleId " +
+            "LEFT JOIN Employee ee on ee.Id = ur.UserId " +
             "where ee.Mobile=#{account} or ee.QQ=#{account}")
-    @ResultType(Resource.class)
-    List<Resource> findAll(@Param("account") String account );
+    List<Resource> getResourceByAccount(@Param("account") String account );
+
+    @Select("<script>" +
+            "select * from Resource "+
+            "<where>"+
+            "1=1 "+
+            "</where>"+
+            " order by Sort asc"+
+            "</script>")
+    List<Resource> getResourceListByCondition(Resource resource);
 
     @Select("select * from Resource where ResId=#{resId}")
     Resource findOneById(@Param("resId") int resId);
 
-    @Update("update Resource set ResName=#{resName},PId=#{pId} ,URL=#{url},Permission=#{permission} where ResId=#{resId}")
-    int modifyResource(Resource role);
+    @Update("update Resource set ResName=#{resName},PId=#{pId} ,URL=#{url},PageUrl=#{pageUrl},Hidden=#{hidden},Permission=#{permission},Sort=#{sort} where ResId=#{resId}")
+    void updateResource(Resource resource);
 
-    @Insert("insert into Resource (ResName,PId,URL,Permission) values (#{resName},#{pId},#{url},#{permission})")
-    int addResource(Resource resource);
+    @Insert("insert into Resource (ResName,PId,URL,PageUrl,Hidden,Permission,Sort) values (#{resName},#{pId},#{url},#{pageUrl},#{hidden},#{permission},#{sort})")
+    void insertResource(Resource resource);
 
     @Delete("delete from Resource where ResId=#{resId}")
-    int delResource(Integer resId);
+    void deleteResourceById(Integer resId);
 
     @Select("<script> select ce.* from Resource ce\n" +
             "    LEFT JOIN RoleResource ro on ro.ResId = ce.ResId\n"+

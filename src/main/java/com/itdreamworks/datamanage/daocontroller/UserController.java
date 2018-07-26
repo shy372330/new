@@ -29,12 +29,23 @@ public class UserController {
      * @param pageSize
      * @return
      */
-    @GetMapping("/userlistbycondition")
-    public Result getUserListByCondition(User user, int pageNum, int pageSize){
+    @GetMapping("/userlistbyconditionandpage")
+    public Result getUserListByConditionAndPage(User user, int pageNum, int pageSize){
         PageHelper.startPage(pageNum, pageSize);
         List<User> list =userMapper.getUserListByCondition(user);
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
+    }
+
+    /**
+     * 获得用户列表数据
+     * @param user
+     * @return
+     */
+    @GetMapping("/userlistbycondition")
+    public Result getUserListByCondition(User user){
+        List<User> list =userMapper.getUserListByCondition(user);
+        return ResultGenerator.genSuccessResult(list);
     }
 
     /**
@@ -49,6 +60,17 @@ public class UserController {
         }else{
             userMapper.insertUser(user);
         }
+        return ResultGenerator.genSuccessResult();
+    }
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/deleteuserbyid")
+    public Result deleteUserById(@RequestParam int id){
+        userMapper.deleteUserById(id);
         return ResultGenerator.genSuccessResult();
     }
 }

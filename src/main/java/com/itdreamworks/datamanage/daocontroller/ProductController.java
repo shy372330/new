@@ -59,10 +59,14 @@ public class ProductController {
         return ResultGenerator.genSuccessResult();
     }
 
-    @GetMapping("/productinfoinmap")
-    public  List<Product>  productInfoInMap(String customerId){
-        List<Product> list =productMapper.getProductListByCustomerId(customerId);
-        return list;
+    /**
+     * 展示数据在地图上
+     * @param product
+     * @return
+     */
+    @GetMapping("/productdataonmap")
+    public  Result  productDataOnMap(Product product){
+        return ResultGenerator.genSuccessResult(productMapper.getProductListByCondition(product));
     }
 
 }
